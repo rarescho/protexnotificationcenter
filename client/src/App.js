@@ -5,9 +5,8 @@ import { BrowserRouter as Router,Routes,Route  } from 'react-router-dom';
 
 
 function App() {
-  const basename = process.env.REACT_APP_BASENAME || null;
   return (
-    <Router basename={basename}>
+    <Router>
      <Routes>
       <Route path="/" element={<Register/>}/>
       <Route path="/RegisterProtex/:auth_protex" element={<RegisterProtex/>}/>
