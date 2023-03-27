@@ -1,10 +1,5 @@
-// This a service worker file for receiving push notifitications.
-// See `Access registration token section` @ https://firebase.google.com/docs/cloud-messaging/js/client#retrieve-the-current-registration-token
-
-// Scripts for firebase and firebase messaging
-importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js');
-
+importScripts("https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js");
+importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js');
 
 // Initialize the Firebase app in the service worker by passing the generated config
 const firebaseConfig = {
@@ -17,6 +12,10 @@ const firebaseConfig = {
     measurementId: "G-KCVSVCJJGP"
 };
 
+// This a service worker file for receiving push notifitications.
+// See `Access registration token section` @ https://firebase.google.com/docs/cloud-messaging/js/client#retrieve-the-current-registration-token
+
+// Scripts for firebase and firebase messaging
 
 firebase.initializeApp(firebaseConfig);
 
