@@ -32,7 +32,7 @@ export default function RegisterProtex() {
 
         const configuration = {
             method: "post",
-            url: "http://www.protex-dashboard.it/register",
+            url: "https://www.protex-dashboard.it/register",
                 data: {
                     auth_firebase,
                     auth_protex,

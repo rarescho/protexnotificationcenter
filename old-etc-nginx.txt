@@ -1,0 +1,58 @@
+server{
+        listen 80;
+        listen [::]:80;
+        root /var/www/www.protex-dashboard.it;
+        index index.html;
+
+        server_name protex-dashboard www.protex-dashboard;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+        location /api/ {
+                proxy_pass http://195.231.84.29:9000/;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection 'upgrade';
+                proxy_set_header Host $host;
+                proxy_cache_bypass $http_upgrade;
+        }
+}
+
+server {
+  listen 443 ssl;
+  listen [::]:443 ssl;
+  server_name www.protex-dashboard.it;
+
+  location / {
+    proxy_set_header Host      $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_pass                 http://localhost:9000/;
+  }
+
+  ssl_certificate /etc/ssl/dashboard/protex-dashboard_it.crt
+  ssl_certificate_key /etc/ssl/dashboard/DashBoard.key
+}
+
+
+server {
+  listen 443 ssl;
+  listen [::]:443 ssl;
+  server_name protex-dashboard www.protex-dashboard;
+
+  location / {
+    proxy_set_header Host      $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_pass                 http://localhost:9000/;
+  }
+
+ ssl_certificate /etc/ssl/dashboard/protex-dashboard_it.crt
+  ssl_certificate_key /etc/ssl/dashboard/DashBoard.key
+}
+
+# Redirect from HTTP to HTTPS for all servers
+server {
+  listen 80;
+  listen [::]:80;
+  return 301 https://$host$request_uri;
+}
