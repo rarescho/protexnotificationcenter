@@ -47,12 +47,12 @@ app.use(logger('dev'));
 app.use(cookieParser());
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
-app.use('/api/', indexRouter);
-app.use('/api/users', usersRouter);
-app.use("/api/testAPI", testAPIRouter);
-app.use("/api/notification", notificationRouter);
-app.use("/api/register", registerRouter);
-app.use("/api/login", loginRouter);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use("/testAPI", testAPIRouter);
+app.use("/notification", notificationRouter);
+app.use("/register", registerRouter);
+app.use("/login", loginRouter);
 
 
 
