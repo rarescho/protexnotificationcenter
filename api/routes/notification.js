@@ -7,11 +7,14 @@ const serviceAccount = require("../config/protexnotificationcenter-firebase-admi
 var firebaseApp = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
+const titleMessage= 'cè un nuova ordine in citta';
+const bodyMessage = 'CIAO';
+
 
 const message = {
     notification:{
-        title: 'cè un nuova ordine in citta',
-        body: 'VAFFANCULO SARA',
+        title: titleMessage,
+        body: bodyMessage,
     },
     token: registrationToken
 }

@@ -65,7 +65,7 @@ export default function TimeLine() {
           iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
           icon={<AiFillAccountBook />}
         >
-          <h3 className="vertical-timeline-element-title">dsadsadasdasdasdasdasdasdasasdasddas</h3>
+          <h3 className="vertical-timeline-element-title">dsadsadasdasdasddas</h3>
           <h4 className="vertical-timeline-element-subtitle">asdasdasdasdasdas</h4>
           <p>
             asdasdsaaaaaaaaaaaaaaaaaa
@@ -77,7 +77,7 @@ export default function TimeLine() {
           iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
           icon={<AiFillAccountBook />}
         >
-          <h3 className="vertical-timeline-element-title">saddddddddddddddddddddddddddddddddddd</h3>
+          <h3 className="vertical-timeline-element-title">sadddddddddddddd</h3>
           <h4 className="vertical-timeline-element-subtitle">asdddddddddddddd</h4>
           <p>
             asddddddddddddddddddddddddddd
