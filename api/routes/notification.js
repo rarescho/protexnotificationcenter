@@ -1,23 +1,16 @@
 var express = require("express");
 var router = express.Router();
-
+const Notification = require("../db/notificationModel");
 const admin = require('firebase-admin');
-const registrationToken = 'e39rlhlz__PpU1iGMiaQ5z:APA91bHUD8igNRqniZlY9q1S3A6--jnwhG9fo-oAeTc2X8cmZ5MTokbvoaJ_fZLf0e5wxb_OiDVy0hTwSU2JE0jFEDtZnT8pVs4wHu0S1TIrJI5jQhVvJ2fydFli4N-WwOL9E1WhVDSi';
+const User = require("../db/userModel");
 const serviceAccount = require("../config/protexnotificationcenter-firebase-adminsdk-56w0d-d9c3c17391.json");
 var firebaseApp = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
-const titleMessage= 'cè un nuova ordine in citta';
-const bodyMessage = 'CIAO';
 
 
-const message = {
-    notification:{
-        title: titleMessage,
-        body: bodyMessage,
-    },
-    token: registrationToken
-}
+
+
 function sendPushNotification(message){
     admin.messaging().send(message).then((response) =>{
         console.log('ok', response);
@@ -26,9 +19,51 @@ function sendPushNotification(message){
     });
 }
 
-router.get("/", function(req, res, next) {
-    sendPushNotification(message);
-    res.send("Notifica inviata");
+router.post("/", function(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*'); 
+
+    User.findOne({ auth_protex: req.body.auth_protex })
+    .then((user) => {
+        console.log(user);
+        
+        const notification = new Notification({
+            auth_protex: request.body.auth_protex,
+            auth_firebase: request.body.auth_firebase,
+          });
+
+          const message = {
+            notification:{
+                title: req.body.title,
+                body: req.body.message,
+            },
+            token: user.auth_firebase
+        };
+          notification.save()
+          .then((result) =>{
+            console.log(message)
+            sendPushNotification(message);
+            res.status(201).send("Notifica inviata");
+          })
+          .catch((error) => {
+            res.status(404).send({
+                message: "Errore salvataggio notifica.",
+                e,
+              });
+          });
+        
+    })
+    .catch((e) => {
+        console.log(e);
+        res.status(404).send({
+          message: "Nessun utente protex registrato",
+          e,
+        });
+      });   
 });
+
+
+
+
+
 
 module.exports = router;

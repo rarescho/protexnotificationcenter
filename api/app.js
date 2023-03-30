@@ -33,7 +33,6 @@ var usersRouter = require('./routes/users');
 var testAPIRouter = require("./routes/testAPI");
 var notificationRouter = require('./routes/notification');
 var registerRouter = require('./routes/register');
-var loginRouter = require('./routes/login');
 const auth = require("./auth");
 
 
@@ -52,7 +51,6 @@ app.use('/users', usersRouter);
 app.use("/testAPI", testAPIRouter);
 app.use("/notification", notificationRouter);
 app.use("/register", registerRouter);
-app.use("/login", loginRouter);
 
 
 

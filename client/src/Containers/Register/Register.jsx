@@ -21,18 +21,14 @@ export default function Register() {
 // prevent the form from refreshing the whole page
       e.preventDefault();
       
-
-
       const configuration = {
         method: "post",
-        url: "https://www.protex-dashboard.it/api/register",
+        url: "http://www.localhost:9000/register",
         data: {
           auth_firebase,
           auth_protex,
         },
       };
-      console.log("Token:",token);
-  
       // make the API call
       axios(configuration)
         .then((result) => {
