@@ -18,36 +18,37 @@ function sendPushNotification(message){
         console.log('error', error);
     });
 }
-
 router.post("/", function(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*'); 
 
     User.findOne({ auth_protex: req.body.auth_protex })
     .then((user) => {
-        console.log(user);
-        
-        const notification = new Notification({
-            auth_protex: request.body.auth_protex,
-            auth_firebase: request.body.auth_firebase,
-          });
-
-          const message = {
+        const message = {
             notification:{
                 title: req.body.title,
                 body: req.body.message,
             },
             token: user.auth_firebase
         };
+        const timestamp = padRight((Math.floor(Date.now() / 1000)),13,'0');
+        const notification = new Notification({
+            title: req.body.title,
+            subtitle: req.body.subtitle,
+            message: req.body.message,
+            auth_protex: user._id,
+            utenteInvio : req.body.utenteInvio,
+            status: "INVIATA",
+            dataora: timestamp
+          });         
           notification.save()
           .then((result) =>{
-            console.log(message)
             sendPushNotification(message);
             res.status(201).send("Notifica inviata");
           })
           .catch((error) => {
             res.status(404).send({
                 message: "Errore salvataggio notifica.",
-                e,
+                error,
               });
           });
         
@@ -60,10 +61,51 @@ router.post("/", function(req, res) {
         });
       });   
 });
+function padRight(value, length, padding) {
+    value = value.toString();
+    padding = padding || ' ';
+    while (value.length < length) {
+      value += padding;
+    }
+    return value;
+  }
+
+router.post('/xuser', async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); 
+
+    try {
+      const { auth_protex } = req.body;
+      const user = await User.findOne({ auth_protex });
+      if (!user) {
+        return res.status(401).json({ message: 'Utente non valido' });
+      }else{
+        const notifications = await Notification.find({ auth_protex: user._id });
+        if (!notifications || notifications.length === 0) {
+          res.status(404).send('Nessuna notifica disponibile');
+        } else {
+          res.send(notifications);
+        }
+      }
+
+     
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Errore nella ricerca delle notifiche');
+    }
+  });
 
 
 
-
-
+// router.get("/xuser/:auth_protex", (req, res) => {
+//     const auth_protex = req.params.auth_protex;
+//     Notification.find({ auth_protex: auth_protex }, (err, notifications) => {
+//       if (err) {
+//         console.error("Errore durante la ricerca delle notifiche", err);
+//         res.status(500).send("Errore durante la ricerca delle notifiche"); // Risposta di errore 500 Internal Server Error
+//       } else {
+//         res.json(notifications); // Risposta con la lista di notifiche
+//       }
+//     });
+//   });
 
 module.exports = router;

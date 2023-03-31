@@ -23,7 +23,7 @@ export default function TimeLine() {
           <h4 className="vertical-timeline-element-subtitle">Utente: PIPPO</h4>
           <p> Attenzione l'ordine O\23232 è stato chiuso.          </p>
         </VerticalTimelineElement>
-        <VerticalTimelineElement
+        {/* <VerticalTimelineElement
           className="vertical-timeline-element--work"
           date="2010 - 2011"
           iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
@@ -86,7 +86,7 @@ export default function TimeLine() {
         <VerticalTimelineElement
           iconStyle={{ background: 'rgb(16, 204, 82)', color: '#fff' }}
           icon={<AiFillAccountBook />}
-        />
+        /> */}
       </VerticalTimeline>
     );
 }

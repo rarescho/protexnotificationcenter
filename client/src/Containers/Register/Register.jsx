@@ -23,7 +23,7 @@ export default function Register() {
       
       const configuration = {
         method: "post",
-        url: "http://www.localhost:9000/register",
+        url: "https://www.protex-dashboard.it/api/register",
         data: {
           auth_firebase,
           auth_protex,

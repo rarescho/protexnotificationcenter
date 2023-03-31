@@ -15,14 +15,6 @@ const NotificationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    title: {
-        type: String,
-        required: true
-    },
-    message: {
-        type: String,
-        required: true
-    },
     auth_protex: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Users',
@@ -31,7 +23,15 @@ const NotificationSchema = new mongoose.Schema({
     status: {
         type: String,
         required: false
-    }
+    },
+    utenteInvio:{
+        type: String,
+        required: true
+    },
+    dataora: {
+        type: Number,
+        required: true
+      }
   });
 
   // export UserSchema
