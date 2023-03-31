@@ -1,92 +1,157 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { ReactSession } from 'react-client-session';
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-import {AiFillAccountBook} from 'react-icons/ai'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBriefcase,
+  faSchool,
+  faStar,
+} from '@fortawesome/free-solid-svg-icons';
+
 
 
 export default function TimeLine() {
+  const workIcon = {
+    icon: <FontAwesomeIcon icon={faBriefcase} />,
+    iconStyle: { background: 'rgb(33, 150, 243)', color: '#fff' },
+  };
+  const schoolIcon = {
+    icon: <FontAwesomeIcon icon={faSchool} />,
+    iconStyle: { background: 'rgb(233, 30, 99)', color: '#fff' },
+  };
+  const starIcon = {
+    icon: <FontAwesomeIcon icon={faStar} />,
+    iconStyle: { background: 'rgb(16, 204, 82)', color: '#fff' },
+  };
 
+    const [notifications, setNotifications] = useState([]);
+  
+    useEffect(() => {
+      axios.post('https://www.protex-dashboard.it/api/notification/xuser/', {
+          auth_protex: 'CHOSARA',
+      })
+      .then(response => {
+          setNotifications(response.data);
+      })
+      .catch(error => {
+          console.error(error);
+      });
+    }, []);
+
+    const timeline = notifications.map(notification => ({
+        icon: workIcon,
+        date: new Date(notification.dataora).toLocaleString(),
+        title: notification.title,
+        subtitle: notification.subtitle,
+        desc: notification.message,
+    }));
+  
+    // Resto del codice
+    // const timeline = [
+    //   {
+    //     icon: workIcon,
+    //     date: '2011 - present',
+    //     title: 'Creative Director',
+    //     subtitle: 'Miami, FL',
+    //     desc: 'Creative Direction, User Experience, Visual Design, Project Management, Team Leading',
+    //   },
+    //   {
+    //     icon: workIcon,
+    //     date: '2010 - 2011',
+    //     title: 'Art Director',
+    //     subtitle: 'San Francisco, CA',
+    //     desc: 'Creative Direction, User Experience, Visual Design, SEO, Online Marketing',
+    //   },
+    //   {
+    //     icon: workIcon,
+    //     date: '2008 - 2010',
+    //     title: 'Web Designer',
+    //     subtitle: 'Los Angeles, CA',
+    //     desc: 'User Experience, Visual Design',
+    //   },
+    //   {
+    //     icon: workIcon,
+    //     date: '2006 - 2008',
+    //     title: 'Web Designer',
+    //     subtitle: 'San Francisco, CA',
+    //     desc: 'User Experience, Visual Design',
+    //   },
+    //   {
+    //     icon: schoolIcon,
+    //     date: 'April 2013',
+    //     title: 'Content Marketing for Web, Mobile and Social Media',
+    //     subtitle: 'Online Course',
+    //     desc: 'Strategy, Social Media',
+    //   },
+    //   {
+    //     icon: schoolIcon,
+    //     date: 'November 2012',
+    //     title: 'Agile Development Scrum Master',
+    //     subtitle: 'Certification',
+    //     desc: 'Creative Direction, User Experience, Visual Design',
+    //   },
+    //   {
+    //     icon: schoolIcon,
+    //     date: '2002 - 2006',
+    //     title: 'Bachelor of Science in Interactive Digital Media Visual Imaging',
+    //     subtitle: 'Bachelor Degree',
+    //     desc: 'Creative Direction, Visual Design',
+    //   },
+    //   { icon: starIcon },
+    // ];
     return (
-        <VerticalTimeline>
-          <p> Buongiorno {ReactSession.get("username")} </p>
-        <VerticalTimelineElement
-          className="vertical-timeline-element--work"
-          contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-          contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
-          date="2011 - present"
-          iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-          icon={<AiFillAccountBook />}
-        >
-          <h3 className="vertical-timeline-element-title">Ordine Chiuso</h3>
-          <h4 className="vertical-timeline-element-subtitle">Utente: PIPPO</h4>
-          <p> Attenzione l'ordine O\23232 è stato chiuso.          </p>
-        </VerticalTimelineElement>
-        {/* <VerticalTimelineElement
-          className="vertical-timeline-element--work"
-          date="2010 - 2011"
-          iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-          icon={<AiFillAccountBook />}
-        >
-          <h3 className="vertical-timeline-element-title">Spedizione eseguita</h3>
-          <h4 className="vertical-timeline-element-subtitle">Utente: pluto</h4>
-          <p>
-            La spedizione nr B0002123 è stata inviata.
-          </p>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          className="vertical-timeline-element--work"
-          date="2008 - 2010"
-          iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-          icon={<AiFillAccountBook />}
-        >
-          <h3 className="vertical-timeline-element-title">Richiesta di invio</h3>
-          <h4 className="vertical-timeline-element-subtitle">Utente: caio</h4>
-          <p>
-            L'utente caio ha chiesto un invio di 100 mt dell'articolo SARAIERI.
-          </p>
-        </VerticalTimelineElement>      
-        <VerticalTimelineElement
-          className="vertical-timeline-element--education"
-          date="April 2013"
-          iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
-          icon={<AiFillAccountBook />}
-        >
-          <h3 className="vertical-timeline-element-title">E' stato autorizzato con successo un'invio di filato.</h3>
-          <h4 className="vertical-timeline-element-subtitle"></h4>
-          <p>
-            Bravo coglione!
-          </p>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          className="vertical-timeline-element--education"
-          date="11 November 2012"
-          iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
-          icon={<AiFillAccountBook />}
-        >
-          <h3 className="vertical-timeline-element-title">dsadsadasdasdasddas</h3>
-          <h4 className="vertical-timeline-element-subtitle">asdasdasdasdasdas</h4>
-          <p>
-            asdasdsaaaaaaaaaaaaaaaaaa
-          </p>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          className="vertical-timeline-element--education"
-          date="11 November 2011"
-          iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
-          icon={<AiFillAccountBook />}
-        >
-          <h3 className="vertical-timeline-element-title">sadddddddddddddd</h3>
-          <h4 className="vertical-timeline-element-subtitle">asdddddddddddddd</h4>
-          <p>
-            asddddddddddddddddddddddddddd
-          </p>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          iconStyle={{ background: 'rgb(16, 204, 82)', color: '#fff' }}
-          icon={<AiFillAccountBook />}
-        /> */}
-      </VerticalTimeline>
+      <VerticalTimeline>
+      {timeline.map((t, i) => {
+        const contentStyle =
+          i === 0
+            ? { background: 'rgb(33, 150, 243)', color: '#fff' }
+            : undefined;
+        const arrowStyle =
+          i === 0
+            ? { borderRight: '7px solid  rgb(33, 150, 243)' }
+            : undefined;
+
+        return (
+          <VerticalTimelineElement
+            key={i}
+            className="vertical-timeline-element--work"
+            contentStyle={contentStyle}
+            contentArrowStyle={arrowStyle}
+            date={t.date}
+            {...t.icon}
+          >
+            {t.title ? (
+              <React.Fragment>
+                <h3 className="vertical-timeline-element-title">{t.title}</h3>
+                {t.subtitle && (
+                  <h4 className="vertical-timeline-element-subtitle">
+                    {t.subtitle}
+                  </h4>
+                )}
+                {t.desc && <p>{t.desc}</p>}
+              </React.Fragment>
+            ) : undefined}
+          </VerticalTimelineElement>
+        );
+      })}
+    </VerticalTimeline>
     );
 }
+{/* <p> Buongiorno {ReactSession.get("username")} </p> */}
+{/* <VerticalTimeline>
+<VerticalTimelineElement
+  className="vertical-timeline-element--work"
+  contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+  contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+  date="2011 - present"
+  iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+  icon={<AiFillAccountBook />}
+>
+  <h3 className="vertical-timeline-element-title">Ordine Chiuso</h3>
+  <h4 className="vertical-timeline-element-subtitle">Utente: PIPPO</h4>
+  <p> Attenzione l'ordine O\23232 è stato chiuso.          </p>
+</VerticalTimelineElement>
+
+</VerticalTimeline> */}
