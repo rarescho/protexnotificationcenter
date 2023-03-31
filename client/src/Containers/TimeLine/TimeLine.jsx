@@ -30,7 +30,7 @@ export default function TimeLine() {
   
     useEffect(() => {
       axios.post('https://www.protex-dashboard.it/api/notification/xuser/', {
-          auth_protex: 'CHOSARA',
+          auth_protex: ReactSession.get("username"),
       })
       .then(response => {
           setNotifications(response.data);
