@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StatusBar, SafeAreaView } from "react-native";
-import { ModernHeader } from "@freakycoder/react-native-header-view";
 import Timeline from "react-native-beautiful-timeline";
 
 class DashBoard extends Component {
@@ -55,21 +54,7 @@ class DashBoard extends Component {
         <StatusBar barStyle="dark-content" />
         <SafeAreaView
           style={{ flex: 1, backgroundColor: "#fdfdfd", padding: 16 }}
-        >      
-          <ModernHeader
-            backgroundColor="#fdfdfd"
-            text="November 2019"
-            rightIconName="dots-vertical"
-            textStyle={{
-              color: "#566184",
-              fontFamily: "Alata-Regular",
-            }}
-            rightIconType="MaterialCommunityIcons"
-            rightIconColor="#984cf8"
-            leftIconName="arrowleft"
-            leftIconType="AntDesign"
-            leftIconColor="#984cf8"
-          />  
+        >              
           <Timeline
             data={dummyData}
             dashThickness={2}
