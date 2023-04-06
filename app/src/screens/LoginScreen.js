@@ -11,26 +11,14 @@ import { theme } from '../core/theme'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { notifications, NotificationMessage, Android } from 'react-native-firebase-push-notifications'
-import PushController from '../helpers/PushController';
-
-
-
-
-
 
 
 export default function LoginScreen({ navigation }) {
-  const [email, setEmail] = useState({ value: '', error: '' })
-  const [password, setPassword] = useState({ value: '', error: '' })
+  const [username, setUsername] = useState({ value: '', error: '' })
 
   const onLoginPressed = () => {
-    const emailError = emailValidator(email.value)
-    const passwordError = passwordValidator(password.value)
-    if (emailError || passwordError) {
-      setEmail({ ...email, error: emailError })
-      setPassword({ ...password, error: passwordError })
-      return
-    }
+      // setUsername({ ...username, error: usernameError })
+      // return    
     navigation.reset({
       index: 0,
       routes: [{ name: 'Dashboard' }],
@@ -41,46 +29,33 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <Background>
-      <PushController/>
-
       <BackButton goBack={navigation.goBack} />
       <Logo />
-      <Header>Welcome back.</Header>
+      <Header>Benvenuto </Header>
       <TextInput
-        label="Email"
+        label="Utente"
         returnKeyType="next"
-        value={email.value}
-        onChangeText={(text) => setEmail({ value: text, error: '' })}
-        error={!!email.error}
-        errorText={email.error}
+        value={username.value}
+        onChangeText={(text) => setUsername({ value: text, error: '' })}
+        error={!!username.error}
+        errorText={username.error}
         autoCapitalize="none"
-        autoCompleteType="email"
-        textContentType="emailAddress"
-        keyboardType="email-address"
-      />
-      <TextInput
-        label="Password"
-        returnKeyType="done"
-        value={password.value}
-        onChangeText={(text) => setPassword({ value: text, error: '' })}
-        error={!!password.error}
-        errorText={password.error}
-        secureTextEntry
+        keyboardType="default"
       />
       <View style={styles.forgotPassword}>
         <TouchableOpacity
           onPress={() => navigation.navigate('ResetPasswordScreen')}
         >
-          <Text style={styles.forgot}>Forgot your password?</Text>
+          <Text style={styles.forgot}>Hai dimenticato la password?</Text>
         </TouchableOpacity>
       </View>
       <Button mode="contained" onPress={onLoginPressed}>
         Login
       </Button>
       <View style={styles.row}>
-        <Text>Don’t have an account? </Text>
+        <Text>Non hai una chaive di accesso? </Text>
         <TouchableOpacity onPress={() => navigation.replace('RegisterScreen')}>
-          <Text style={styles.link}>Sign up</Text>
+          <Text style={styles.link}>Richiedila</Text>
         </TouchableOpacity>
       </View>
     </Background>

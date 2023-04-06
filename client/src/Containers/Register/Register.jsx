@@ -16,6 +16,17 @@ export default function Register() {
     const params  = useParams();
     requestForToken();
 
+    // useEffect(() => {
+    //   axios.post('https://www.protex-dashboard.it/api/notification/xuser/', {
+    //       auth_protex: ReactSession.get("username"),
+    //   })
+    //   .then(response => {
+    //       setNotifications(response.data);
+    //   })
+    //   .catch(error => {
+    //       console.error(error);
+    //   });
+    // }, []);
 
     const handleSubmit = (e) => {
 // prevent the form from refreshing the whole page

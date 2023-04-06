@@ -10,15 +10,20 @@ import {
   ResetPasswordScreen,
   Dashboard,
 } from './src/screens';
+import RemotePushController from './src/helpers/RemotePushController'
+import {PermissionsAndroid} from 'react-native';
+PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <Provider theme={theme}>
+        <RemotePushController />
+
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="StartScreen"
+          initialRouteName="LoginScreen"
           screenOptions={{
             headerShown: false,
           }}>

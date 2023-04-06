@@ -51,6 +51,8 @@ app.use('/users', usersRouter);
 app.use("/testAPI", testAPIRouter);
 app.use("/notification", notificationRouter);
 app.use("/register", registerRouter);
+app.use("/register/check", registerRouter);
+
 
 
 
