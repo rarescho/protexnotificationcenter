@@ -17,7 +17,7 @@ export default function Register() {
     requestForToken();
 
     useEffect(()=>{
-     if(loginFirebase()){
+     if(loginFirebase(token)){
       navigate("/Timeline")
      }    
   }, [])

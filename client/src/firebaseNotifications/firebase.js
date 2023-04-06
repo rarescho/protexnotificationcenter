@@ -39,9 +39,9 @@ export const requestForToken = () => {
 
 
 
-export const loginFirebase =() => {
-  if (token != null){
-    const token_firebase = token;
+export const loginFirebase = (token_richiesta) => {
+  if (token_richiesta != null){
+    const token_firebase = token_richiesta;
     const configuration1 = {
       method: "post",
       url: "https://www.protex-dashboard.it/api/register/check",
@@ -57,6 +57,7 @@ export const loginFirebase =() => {
           ReactSession.set("username", result.data.auth_protex);
           return true;
         }else if(result.data.message.toUpperCase().includes("ERROR")){
+          return false;
         }
       })
       .catch((error) => {
