@@ -26,6 +26,7 @@ export const requestForToken = () => {
     .then((currentToken) => {
       if (currentToken) {
         token = currentToken;
+        ReactSession.set("token", token);
         // Perform any other neccessary action with the token
       } else {
         // Show permission request UI
@@ -39,9 +40,10 @@ export const requestForToken = () => {
 
 
 
-export const loginFirebase = (token_richiesta) => {
-  if (token_richiesta != null){
-    const token_firebase = token_richiesta;
+export const loginFirebase = () => {
+  
+    const token_firebase = localStorage.getItem("token");
+    if (token_firebase != null){
     const configuration1 = {
       method: "post",
       url: "https://www.protex-dashboard.it/api/register/check",
