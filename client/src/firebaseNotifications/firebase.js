@@ -20,13 +20,44 @@ initializeApp(firebaseConfig);
 const messaging = getMessaging();
 
 export var token = "";
+export var token_firebase = "";
 
-export const requestForToken = () => {
+
+export const requestForToken = (navigate) => {
+  
   return getToken(messaging, { vapidKey: `BCWpuVjlsjX3UuC6m3gbN1XIvQfXmIcelejC7cOF6f3WNWN-bw2ycKZFfOv-qthRY8EagOYujtvM9B3WLIwB0ns` })
     .then((currentToken) => {
       if (currentToken) {
         token = currentToken;
-        ReactSession.set("token", token);
+        token_firebase = currentToken;
+// inizio controllo login
+      if (token_firebase != null){
+        const configuration = {
+          method: "post",
+          url: "https://www.protex-dashboard.it/api/register/check",
+          data: {
+            token_firebase
+          },
+        }; 
+        console.log(configuration);
+        axios(configuration)
+          .then((result) => {
+            if (result.data.message.toUpperCase().includes("SUCCESS")){
+              ReactSession.setStoreType("localStorage");
+              ReactSession.set("username", result.data.auth_protex);
+              navigate("/Timeline")
+            }else if(result.data.message.toUpperCase().includes("ERROR")){
+            }
+          })
+          .catch((error) => {
+            error = new Error();
+
+          });
+      }
+
+
+
+
         // Perform any other neccessary action with the token
       } else {
         // Show permission request UI
@@ -40,36 +71,7 @@ export const requestForToken = () => {
 
 
 
-export const loginFirebase = () => {
-  
-    const token_firebase = ReactSession.get("token");
-    console.log(ReactSession.get("token"))
-    if (token_firebase != null){
-    const configuration1 = {
-      method: "post",
-      url: "https://www.protex-dashboard.it/api/register/check",
-      data: {
-        token_firebase
-      },
-    }; 
-    console.log(configuration1);
-    axios(configuration1)
-      .then((result) => {
-        if (result.data.message.toUpperCase().includes("SUCCESS")){
-          ReactSession.setStoreType("localStorage");
-          ReactSession.set("username", result.data.auth_protex);
-          return true;
-        }else if(result.data.message.toUpperCase().includes("ERROR")){
-          return false;
-        }
-      })
-      .catch((error) => {
-        error = new Error();
-        return false;
 
-      });
-  }
-};
 // Handle incoming messages. Called when:
 // - a message is received while the app has focus
 // - the user clicks on an app notification created by a service worker `messaging.onBackgroundMessage` handler.

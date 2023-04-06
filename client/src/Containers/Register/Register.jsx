@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { ReactSession } from 'react-client-session';
-import { token,requestForToken,loginFirebase } from '../../firebaseNotifications/firebase';
+import { token,requestForToken } from '../../firebaseNotifications/firebase';
 import { useParams } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 import './Register.css'
@@ -14,14 +14,7 @@ export default function Register() {
     const [register, setRegister] = useState(false);
     let navigate = useNavigate();
     const params  = useParams();
-    requestForToken();
-
-    useEffect(()=>{
-     if(loginFirebase()){
-      navigate("/Timeline")
-     }    
-    }, [navigate])
-
+    requestForToken(navigate);
 
 
     const handleSubmit = (e) => {
@@ -93,8 +86,3 @@ export default function Register() {
 
     
 }
-
-function loginAuto(navigate){
-  
-}
-
