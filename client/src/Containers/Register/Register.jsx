@@ -15,8 +15,10 @@ export default function Register() {
     let navigate = useNavigate();
     const params  = useParams();
     requestForToken();
+    useEffect(() => {
+      loginAuto(navigate);
+    }, [token]);
 
-    loginAuto(navigate);
 
     const handleSubmit = (e) => {
 // prevent the form from refreshing the whole page
@@ -90,7 +92,7 @@ export default function Register() {
 
 function loginAuto(navigate){
   if (token != null){
-    let token_firebase = token;
+    const token_firebase = token;
     const configuration1 = {
       method: "post",
       url: "https://www.protex-dashboard.it/api/register/check",
