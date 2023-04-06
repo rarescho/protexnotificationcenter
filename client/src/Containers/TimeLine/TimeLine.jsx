@@ -105,9 +105,7 @@ export default function TimeLine() {
     // ];
     return (
       <VerticalTimeline>
-        <div class="topnav">
          <p>Ciao {ReactSession.get("username")}, queste sono le tue ultime notifiche.</p> 
-        </div>
       {timeline.map((t, i) => {
         const contentStyle =
           i === 0
