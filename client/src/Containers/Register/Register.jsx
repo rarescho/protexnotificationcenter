@@ -18,7 +18,7 @@ export default function Register() {
 
     const configuration = {
       method: "post",
-      url: "http://localhost:9000/register/check",
+      url: "https://www.protex-dashboard.it/api/register/check",
       data: {
         token
       },
