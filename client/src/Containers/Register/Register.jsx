@@ -15,29 +15,8 @@ export default function Register() {
     let navigate = useNavigate();
     const params  = useParams();
     requestForToken();
-
-    let token_firebase = token;
-    const configuration1 = {
-      method: "post",
-      url: "https://www.protex-dashboard.it/api/register/check",
-      data: {
-        token_firebase
-      },
-    }; 
-    console.log(configuration1);
-    // make the API call
-    axios(configuration1)
-      .then((result) => {
-        if (result.data.message.toUpperCase().includes("SUCCESS")){
-          ReactSession.setStoreType("localStorage");
-          ReactSession.set("username", result.data.auth_protex);
-          navigate("/Timeline")
-        }else if(result.data.message.toUpperCase().includes("ERROR")){
-        }
-      })
-      .catch((error) => {
-        error = new Error();
-      });
+    
+    loginAuto(navigate);
 
     const handleSubmit = (e) => {
 // prevent the form from refreshing the whole page
@@ -70,7 +49,6 @@ export default function Register() {
         });
       
     };
-
       return  (
         <div className="Auth-form-container">
         <form className="Auth-form">
@@ -110,26 +88,30 @@ export default function Register() {
     
 }
 
-// function checkLoggedIn(){
-//   const configuration = {
-//     method: "post",
-//     url: "https://www.protex-dashboard.it/api/check",
-//     data: {
-//       token
-//     },
-//   };
-//   // make the API call
-//   axios(configuration)
-//     .then((result) => {
-//       if (result.data.message.toUpperCase().includes("SUCCESS")){
-//         ReactSession.setStoreType("localStorage");
-//         ReactSession.set("username", result.data.auth_protex);
-//         return true;
-//       }else if(result.data.message.toUpperCase().includes("ERROR")){
-//           return false;
-//       }
-//     })
-//     .catch((error) => {
-//       error = new Error();
-//     });
-// }
+function loginAuto(navigate){
+  if (token == null || token.length() === 0){
+    let token_firebase = token;
+    const configuration1 = {
+      method: "post",
+      url: "https://www.protex-dashboard.it/api/register/check",
+      data: {
+        token_firebase
+      },
+    }; 
+    console.log(configuration1);
+    // make the API call
+    axios(configuration1)
+      .then((result) => {
+        if (result.data.message.toUpperCase().includes("SUCCESS")){
+          ReactSession.setStoreType("localStorage");
+          ReactSession.set("username", result.data.auth_protex);
+          navigate("/Timeline")
+        }else if(result.data.message.toUpperCase().includes("ERROR")){
+        }
+      })
+      .catch((error) => {
+        error = new Error();
+      });
+  }
+}
+
