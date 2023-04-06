@@ -1,6 +1,9 @@
-package com.app;
+package com.computerhouse.protexnotificationcenter;
 
 import android.app.Application;
+
+
+import com.computerhouse.protexnotificationcenter.BuildConfig;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
