@@ -1,5 +1,9 @@
 import { initializeApp } from 'firebase/app';
 import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+import axios from "axios";
+import { ReactSession } from 'react-client-session';
+
+
 
 var firebaseConfig = {
   apiKey: "AIzaSyDTWo6IJUsn3zv3MaLofgdKqiUx48-8EnI",
@@ -33,6 +37,35 @@ export const requestForToken = () => {
     });
 };
 
+
+
+export const loginFirebase =() => {
+  if (token != null){
+    const token_firebase = token;
+    const configuration1 = {
+      method: "post",
+      url: "https://www.protex-dashboard.it/api/register/check",
+      data: {
+        token_firebase
+      },
+    }; 
+    console.log(configuration1);
+    axios(configuration1)
+      .then((result) => {
+        if (result.data.message.toUpperCase().includes("SUCCESS")){
+          ReactSession.setStoreType("localStorage");
+          ReactSession.set("username", result.data.auth_protex);
+          return true;
+        }else if(result.data.message.toUpperCase().includes("ERROR")){
+        }
+      })
+      .catch((error) => {
+        error = new Error();
+        return false;
+
+      });
+  }
+};
 // Handle incoming messages. Called when:
 // - a message is received while the app has focus
 // - the user clicks on an app notification created by a service worker `messaging.onBackgroundMessage` handler.

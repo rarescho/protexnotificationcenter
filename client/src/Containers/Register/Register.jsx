@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { ReactSession } from 'react-client-session';
-import { token,requestForToken } from '../../firebaseNotifications/firebase';
+import { token,requestForToken,loginFirebase } from '../../firebaseNotifications/firebase';
 import { useParams } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 import './Register.css'
@@ -15,9 +15,13 @@ export default function Register() {
     let navigate = useNavigate();
     const params  = useParams();
     requestForToken();
-    useEffect(() => {
-      loginAuto(navigate);
-    }, [token]);
+
+    useEffect(()=>{
+     if(loginFirebase()){
+      navigate("/Timeline")
+     }    
+  }, [])
+
 
 
     const handleSubmit = (e) => {
@@ -91,29 +95,6 @@ export default function Register() {
 }
 
 function loginAuto(navigate){
-  if (token != null){
-    const token_firebase = token;
-    const configuration1 = {
-      method: "post",
-      url: "https://www.protex-dashboard.it/api/register/check",
-      data: {
-        token_firebase
-      },
-    }; 
-    console.log(configuration1);
-    // make the API call
-    axios(configuration1)
-      .then((result) => {
-        if (result.data.message.toUpperCase().includes("SUCCESS")){
-          ReactSession.setStoreType("localStorage");
-          ReactSession.set("username", result.data.auth_protex);
-          navigate("/Timeline")
-        }else if(result.data.message.toUpperCase().includes("ERROR")){
-        }
-      })
-      .catch((error) => {
-        error = new Error();
-      });
-  }
+  
 }
 
