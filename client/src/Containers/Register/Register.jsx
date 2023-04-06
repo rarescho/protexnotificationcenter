@@ -15,7 +15,7 @@ export default function Register() {
     let navigate = useNavigate();
     const params  = useParams();
     requestForToken();
-    
+
     loginAuto(navigate);
 
     const handleSubmit = (e) => {
@@ -89,7 +89,7 @@ export default function Register() {
 }
 
 function loginAuto(navigate){
-  if (token == null || token.length() === 0){
+  if (token == null){
     let token_firebase = token;
     const configuration1 = {
       method: "post",
