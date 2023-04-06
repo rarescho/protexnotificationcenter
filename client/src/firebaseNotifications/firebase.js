@@ -43,6 +43,7 @@ export const requestForToken = () => {
 export const loginFirebase = () => {
   
     const token_firebase = localStorage.getItem("token");
+    console.log(localStorage.getItem("token"))
     if (token_firebase != null){
     const configuration1 = {
       method: "post",
