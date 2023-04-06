@@ -16,15 +16,17 @@ export default function Register() {
     const params  = useParams();
     requestForToken();
 
-    const configuration = {
+    let token_firebase = token;
+    const configuration1 = {
       method: "post",
       url: "https://www.protex-dashboard.it/api/register/check",
       data: {
-        token
+        token_firebase
       },
-    };
+    }; 
+    console.log(configuration1);
     // make the API call
-    axios(configuration)
+    axios(configuration1)
       .then((result) => {
         if (result.data.message.toUpperCase().includes("SUCCESS")){
           ReactSession.setStoreType("localStorage");

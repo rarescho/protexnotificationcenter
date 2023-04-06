@@ -67,8 +67,8 @@ router.post("/", (request, response) => {
   });
 router.post("/check", async(req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  const { auth_firebase } = req.body;
-  const user = await User.findOne({ auth_firebase });
+  const { token_firebase } = req.body;
+  const user = await User.findOne({ token_firebase });
   if (!user) {
     return res.status(401).json({ message: '[ERROR] Problemi ritrovamento utente' });
   }else{
