@@ -16,17 +16,26 @@ export default function Register() {
     const params  = useParams();
     requestForToken();
 
-    // useEffect(() => {
-    //   axios.post('https://www.protex-dashboard.it/api/notification/xuser/', {
-    //       auth_protex: ReactSession.get("username"),
-    //   })
-    //   .then(response => {
-    //       setNotifications(response.data);
-    //   })
-    //   .catch(error => {
-    //       console.error(error);
-    //   });
-    // }, []);
+    const configuration = {
+      method: "post",
+      url: "https://www.protex-dashboard.it/api/register/check",
+      data: {
+        token
+      },
+    };
+    // make the API call
+    axios(configuration)
+      .then((result) => {
+        if (result.data.message.toUpperCase().includes("SUCCESS")){
+          ReactSession.setStoreType("localStorage");
+          ReactSession.set("username", result.data.auth_protex);
+          navigate("/Timeline")
+        }else if(result.data.message.toUpperCase().includes("ERROR")){
+        }
+      })
+      .catch((error) => {
+        error = new Error();
+      });
 
     const handleSubmit = (e) => {
 // prevent the form from refreshing the whole page
@@ -98,3 +107,27 @@ export default function Register() {
 
     
 }
+
+// function checkLoggedIn(){
+//   const configuration = {
+//     method: "post",
+//     url: "https://www.protex-dashboard.it/api/check",
+//     data: {
+//       token
+//     },
+//   };
+//   // make the API call
+//   axios(configuration)
+//     .then((result) => {
+//       if (result.data.message.toUpperCase().includes("SUCCESS")){
+//         ReactSession.setStoreType("localStorage");
+//         ReactSession.set("username", result.data.auth_protex);
+//         return true;
+//       }else if(result.data.message.toUpperCase().includes("ERROR")){
+//           return false;
+//       }
+//     })
+//     .catch((error) => {
+//       error = new Error();
+//     });
+// }
