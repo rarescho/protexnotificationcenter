@@ -89,7 +89,7 @@ export default function Register() {
 }
 
 function loginAuto(navigate){
-  if (token == null){
+  if (token != null){
     let token_firebase = token;
     const configuration1 = {
       method: "post",
