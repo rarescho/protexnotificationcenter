@@ -16,21 +16,49 @@ class DashBoard extends Component {
   }
   // http://10.99.99.167:9000/notification/xuser
   async componentDidMount() {
-    await fetch('https://www.protex-dashboard.it/api/notification/xuser', {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json;charset=UTF-8',
+    let data = JSON.stringify({
+      "auth_protex": "CHORARES"
+    });
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'https://www.protex-dashboard.it/api/notification/xuser',
+      headers: { 
+        'Content-Type': 'application/json',
         'Access-Control-Allow-Origin' : '*',
+        'Accept': 'application/json'
+
       },
-      body: JSON.stringify({
-        auth_protex: 'CHORARES',
-      }),
-    })   
-      .then(response => response.json())
-      .then(data => this.setState({notifications: data}))
-      .catch(error => console.error(error));
+      data : data
+    };
+    console.log(config);
+    axios.request(config)
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log("ERRORE:",error);
+    })
+    .finnaly(() =>{
+
+    });
+
+    // await fetch('https://www.protex-dashboard.it/api/notification/xuser', {
+    //   method: 'POST',
+    //   mode: 'cors',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json;charset=UTF-8',
+    //     'Access-Control-Allow-Origin' : '*',
+    //   },
+    //   body: JSON.stringify({
+    //     auth_protex: 'CHORARES',
+    //   }),
+    // })   
+    //   .then(response => response.json())
+    //   .then(data => this.setState({notifications: data}))
+    //   .catch(error => console.error(error));
   }
 
   onEventPress(data) {
