@@ -9,7 +9,14 @@ const dbConnect = require("./db/dbConnect");
 dbConnect();
 var app = express();
 
-app.use(cors());
+const options = {
+  "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": false,
+  "optionsSuccessStatus": 204
+}
+app.use(cors(options));
+// app.use(cors());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(

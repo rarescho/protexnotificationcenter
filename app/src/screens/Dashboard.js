@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StatusBar, SafeAreaView } from "react-native";
 import Timeline from "react-native-beautiful-timeline";
+import axios from 'axios';
+
 
 class DashBoard extends Component {
   constructor(props) {
@@ -12,15 +14,18 @@ class DashBoard extends Component {
     this.onEventPress = this.onEventPress.bind(this);
     this.renderSelected = this.renderSelected.bind(this);
   }
-
-  componentDidMount() {
-    fetch('https://www.protex-dashboard.it/api/notification/xuser/', {
+  // http://10.99.99.167:9000/notification/xuser
+  async componentDidMount() {
+    await fetch('https://www.protex-dashboard.it/api/notification/xuser', {
       method: 'POST',
+      mode: 'cors',
       headers: {
-        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin' : '*',
       },
       body: JSON.stringify({
-        auth_protex: 'CHOSARA',
+        auth_protex: 'CHORARES',
       }),
     })   
       .then(response => response.json())

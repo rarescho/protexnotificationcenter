@@ -71,7 +71,9 @@ function padRight(value, length, padding) {
   }
 
 router.post('/xuser', async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*'); 
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); 
 
     try {
       const { auth_protex } = req.body;
@@ -83,6 +85,7 @@ router.post('/xuser', async (req, res) => {
         if (!notifications || notifications.length === 0) {
           res.status(404).send('Nessuna notifica disponibile');
         } else {
+          console.log(notifications);
           res.send(notifications);
         }
       }
