@@ -97,7 +97,7 @@ export const requestForTokenRegister = (navigate,protexlogin) => {
 
               const configuration1 = {
                 method: "post",
-                url: "https://www.protex-dashboard.it/register",
+                url: "https://www.protex-dashboard.it/api/register",
                 data: {
                     'auth_firebase' : token_firebase,
                     'auth_protex' : protexlogin,
