@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { ReactSession } from 'react-client-session';
-import { token } from '../../firebaseNotifications/firebase';
+import { token,requestForToken } from '../../firebaseNotifications/firebase';
 import Notification from '../../firebaseNotifications/Notification'
 
 import { useParams } from "react-router-dom";
@@ -23,39 +23,40 @@ export default function RegisterProtex() {
 
 
     let navigate = useNavigate();
-    const params  = useParams();  
+    const params  = useParams();
+    requestForToken(navigate); 
     setAuth_Protex(params.auth_protex);
     setAuth_Firebase(token);
 
-    useEffect(() => {
-        console.log(auth_protex,auth_firebase);
+    // useEffect(() => {
 
-        const configuration = {
-            method: "post",
-            url: "https://www.protex-dashboard.it/register",
-                data: {
-                    auth_firebase,
-                    auth_protex,
-                },
-            };
-        
-            // make the API call
-            axios(configuration)
-            .then((result) => {
-                setRegister(true);
-                console.log(result.data);
-                if (result.data.message.toUpperCase().includes("REGISTERED")){
-                    setLoggedIn(true);
-                    console.log("Questo è firebase:",auth_firebase);
-                    ReactSession.setStoreType("localStorage");
-                    ReactSession.set("username", auth_protex);
-                    navigate("/Timeline")
-                }
-            })
-            .catch((error) => {
-                error = new Error();
-            });
-    }, [loggedIn]);
+    const configuration = {
+        method: "post",
+        url: "https://www.protex-dashboard.it/register",
+            data: {
+                auth_firebase,
+                auth_protex,
+            },
+        };
+    
+        // make the API call
+        axios(configuration)
+        .then((result) => {
+            setRegister(true);
+            console.log(result.data);
+            if (result.data.message.toUpperCase().includes("REGISTERED")){
+                setLoggedIn(true);
+                console.log("Questo è firebase:",auth_firebase);
+                ReactSession.setStoreType("localStorage");
+                ReactSession.set("username", auth_protex);
+                navigate("/Timeline")
+            }
+        })
+        .catch((error) => {
+            error = new Error();
+            return error;
+        });
+    // }, [loggedIn]);
     
       
     
