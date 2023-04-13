@@ -37,8 +37,13 @@ export default function TimeLine() {
       .then(response => {
         if(!Object.keys(response.data).length){
           console.log("Nessuna notifica trovata");
+          }else if(response.status.includes("404")){
+            console.log(response.message)
+          }else if(response.status.includes("401")){
+            console.log(response.message)
           }else{
             setNotifications(response.data);
+
           }
       })
       .catch(error => {
