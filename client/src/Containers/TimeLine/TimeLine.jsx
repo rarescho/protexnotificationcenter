@@ -59,7 +59,7 @@ export default function TimeLine() {
     }, []);
     const timestamp = padRight((Math.floor(Date.now() / 1000)),13,'0');
 
-    const timeline = notifications.length === 0 ? notifications.map(notification => ({
+    const timeline = notifications.length > 0 ? notifications.map(notification => ({
         icon: workIcon,
         date: new Date(notification.dataora).toLocaleString(),
         title: notification.title,
