@@ -83,10 +83,10 @@ router.post('/xuser', async (req, res) => {
       }else{
         const notifications = await Notification.find({ auth_protex: user._id });
         if (!notifications || notifications.length === 0) {
-          res.status(202).send('Nessuna notifica disponibile');
+            res.status(202).send('[EMPTY] Nessuna notifica disponibile');
         } else {
-          console.log(notifications);
-          res.send(notifications);
+            console.log(notifications);
+            res.send(notifications);
         }
       }
 

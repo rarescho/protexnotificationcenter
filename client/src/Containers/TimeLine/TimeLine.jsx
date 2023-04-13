@@ -29,6 +29,8 @@ export default function TimeLine() {
   };
 
     const [notifications, setNotifications] = useState([]);
+    const [notificationsDisponibili, setNotificationsDisponibili] = useState(false);
+
   
     useEffect(() => {
       const configuration = {
@@ -41,10 +43,11 @@ export default function TimeLine() {
 
       axios(configuration)
       .then(response => {
-        if(Object.keys(response.data).length === 0){
-          console.log("Nessuna notifica trovata");
+        if(response.status === 202){
+            console.log("Nessuna notifica trovata");
           }else{
             console.log(response.data);
+            setNotificationsDisponibili(true);
             setNotifications(response.data);
           }
       })
@@ -60,8 +63,7 @@ export default function TimeLine() {
     }, []);
     const timestamp = padRight((Math.floor(Date.now() / 1000)),13,'0');
 
-    console.log(notifications);
-    const timeline = notifications.length > 0 ? notifications.map(notification => ({
+    const timeline = notificationsDisponibili === true ? notifications.map(notification => ({
         icon: workIcon,
         date: new Date(notification.dataora).toLocaleString(),
         title: notification.title,
