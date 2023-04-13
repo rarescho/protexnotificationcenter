@@ -58,13 +58,13 @@ export default function TimeLine() {
       });
     }, []);
 
-    const timeline = notifications.lenght ? notifications.map(notification => ({
+    const timeline = notifications.map(notification => ({
         icon: workIcon,
         date: new Date(notification.dataora).toLocaleString(),
         title: notification.title,
         subtitle: notification.subtitle,
         desc: notification.message,
-    })) : {};
+    }));
   
     // Resto del codice
     // const timeline = [
