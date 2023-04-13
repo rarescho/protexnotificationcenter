@@ -109,6 +109,8 @@ export const requestForTokenRegister = (navigate,protexlogin) => {
               .then((result1) => {
                   console.log(result1.data);
                   if (result1.data.message.toUpperCase().includes("SUCCESS")){
+                    ReactSession.setStoreType("localStorage");
+              ReactSession.set("username", result.data.auth_protex);
                       navigate("/Timeline")
                       }else if(result1.data.message.toUpperCase().includes("ERROR")){
                           return;
