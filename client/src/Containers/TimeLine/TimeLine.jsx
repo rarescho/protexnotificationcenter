@@ -38,7 +38,7 @@ export default function TimeLine() {
           setNotifications(response.data);
       })
       .catch(error => {
-          console.error(error);
+          console.error("QUI ERRORE",ReactSession.get("username"));
       });
     }, []);
 
