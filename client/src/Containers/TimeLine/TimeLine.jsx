@@ -43,17 +43,19 @@ export default function TimeLine() {
       .then(response => {
         if(!Object.keys(response.data).length){
           console.log("Nessuna notifica trovata");
-          }else if(response.status.includes("202")){
-            console.log(response.message)
-          }else if(response.status.includes("401")){
-            console.log(response.message)
           }else{
             setNotifications(response.data);
 
           }
       })
       .catch(error => {
+       if(error.response.status === 201){
+          console.log(error.response.message)
+        }else if(error.response.status === 401){
+          console.log(error.response.message)
+        }else{
           console.error("Errore durante la procedura di ritrovamento notifiche",error);
+        }
       });
     }, []);
 
