@@ -51,6 +51,7 @@ export const requestForToken = (navigate) => {
           })
           .catch((error) => {
             error = new Error();
+            console.log(error);
 
           });
       }
