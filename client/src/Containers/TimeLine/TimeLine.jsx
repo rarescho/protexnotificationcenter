@@ -31,14 +31,18 @@ export default function TimeLine() {
     const [notifications, setNotifications] = useState([]);
   
     useEffect(() => {
-      axios.post('https://www.protex-dashboard.it/api/notification/xuser/', {
+      axios.post('https://www.protex-dashboard.it/api/notification/xuser', {
           auth_protex: ReactSession.get("username"),
       })
       .then(response => {
-          setNotifications(response.data);
+        if(!Object.keys(response.data).length){
+          console.log("Nessuna notifica trovata");
+          }else{
+            setNotifications(response.data);
+          }
       })
       .catch(error => {
-          console.error("QUI ERRORE",ReactSession.get("username"));
+          console.error("Errore durante la procedura di ritrovamento notifiche");
       });
     }, []);
 
