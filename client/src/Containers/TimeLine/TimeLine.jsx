@@ -44,6 +44,7 @@ export default function TimeLine() {
         if(Object.keys(response.data).length === 0){
           console.log("Nessuna notifica trovata");
           }else{
+            console.log(response.data);
             setNotifications(response.data);
           }
       })
@@ -59,6 +60,7 @@ export default function TimeLine() {
     }, []);
     const timestamp = padRight((Math.floor(Date.now() / 1000)),13,'0');
 
+    console.log(notifications);
     const timeline = notifications.length > 0 ? notifications.map(notification => ({
         icon: workIcon,
         date: new Date(notification.dataora).toLocaleString(),
