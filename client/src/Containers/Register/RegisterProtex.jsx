@@ -56,7 +56,6 @@ export default function RegisterProtex() {
                   }
             })
             .catch((error) => {
-                error = new Error();
                 return error;
             });
     }, [loggedIn]);

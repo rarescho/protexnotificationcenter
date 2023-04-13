@@ -50,8 +50,9 @@ export const requestForToken = (navigate) => {
             }
           })
           .catch((error) => {
-            console.log(error);
-
+            if(error.response.status === 201){
+              console.log(error.response.data.message)
+            }
           });
       }
 

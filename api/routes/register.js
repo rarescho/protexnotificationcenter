@@ -71,7 +71,7 @@ router.post("/check", async(req, res) => {
   const user = await User.findOne({ auth_firebase: token_firebase });
   console.log(user);
   if (!user) {
-    return res.status(401).json({ message: '[ERROR] Problemi ritrovamento utente' });
+    return res.status(201).json({ message: '[ERROR] Problemi ritrovamento utente' });
   }else{
     res.status(202).send({
           message: "[SUCCESS] Utente esiste",
