@@ -41,11 +41,10 @@ export default function TimeLine() {
 
       axios(configuration)
       .then(response => {
-        if(!Object.keys(response.data).length){
+        if(Object.keys(response.data).length === 0){
           console.log("Nessuna notifica trovata");
           }else{
             setNotifications(response.data);
-
           }
       })
       .catch(error => {
