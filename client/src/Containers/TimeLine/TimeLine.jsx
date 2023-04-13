@@ -58,13 +58,13 @@ export default function TimeLine() {
       });
     }, []);
 
-    const timeline = notifications.map(notification => ({
+    const timeline = notifications.lenght ? notifications.map(notification => ({
         icon: workIcon,
         date: new Date(notification.dataora).toLocaleString(),
         title: notification.title,
         subtitle: notification.subtitle,
         desc: notification.message,
-    }));
+    })) : {};
   
     // Resto del codice
     // const timeline = [
@@ -122,7 +122,7 @@ export default function TimeLine() {
     return (
       <VerticalTimeline>
          <p>Ciao {ReactSession.get("username")}, queste sono le tue ultime notifiche.</p> 
-      {timeline.map((t, i) => {
+      {timeline.lenght ? timeline.map((t, i) => {
         const contentStyle =
           i === 0
             ? { background: 'rgb(33, 150, 243)', color: '#fff' }
@@ -154,23 +154,7 @@ export default function TimeLine() {
             ) : undefined}
           </VerticalTimelineElement>
         );
-      })}
+      }) : <p>vuoto</p>}
     </VerticalTimeline>
     );
 }
-{/* <p> Buongiorno {ReactSession.get("username")} </p> */}
-{/* <VerticalTimeline>
-<VerticalTimelineElement
-  className="vertical-timeline-element--work"
-  contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-  contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
-  date="2011 - present"
-  iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-  icon={<AiFillAccountBook />}
->
-  <h3 className="vertical-timeline-element-title">Ordine Chiuso</h3>
-  <h4 className="vertical-timeline-element-subtitle">Utente: PIPPO</h4>
-  <p> Attenzione l'ordine O\23232 è stato chiuso.          </p>
-</VerticalTimelineElement>
-
-</VerticalTimeline> */}
