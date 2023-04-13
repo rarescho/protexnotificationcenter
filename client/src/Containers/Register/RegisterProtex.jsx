@@ -28,37 +28,37 @@ export default function RegisterProtex() {
     setAuth_Protex(params.auth_protex);
     setAuth_Firebase(token);
 
-    useEffect(() => {
-        console.log(auth_protex,auth_firebase);
+    // useEffect(() => {
+    console.log(auth_protex,auth_firebase);
 
-        const configuration = {
-            method: "post",
-            url: "https://www.protex-dashboard.it/register",
-            data: {
-                auth_firebase,
-                auth_protex,
-            },
-            };
-        
-            // make the API call
-            axios(configuration)
-            .then((result) => {
-                setRegister(true);
-                console.log(result.data);
-                if (result.data.message.toUpperCase().includes("SUCCESS")){
-                    setLoggedIn(true);
-                    console.log("Questo è firebase:",auth_firebase);
-                    ReactSession.setStoreType("localStorage");
-                    ReactSession.set("username", auth_protex);
-                    navigate("/Timeline")
-                  }else if(result.data.message.toUpperCase().includes("ERROR")){
-                      return;
-                  }
-            })
-            .catch((error) => {
-                return error;
-            });
-    }, [loggedIn]);
+    const configuration = {
+        method: "post",
+        url: "https://www.protex-dashboard.it/register",
+        data: {
+            auth_firebase,
+            auth_protex,
+        },
+    };
+    
+        // make the API call
+    axios(configuration)
+    .then((result) => {
+        setRegister(true);
+        console.log(result.data);
+        if (result.data.message.toUpperCase().includes("SUCCESS")){
+            setLoggedIn(true);
+            console.log("Questo è firebase:",auth_firebase);
+            ReactSession.setStoreType("localStorage");
+            ReactSession.set("username", auth_protex);
+            navigate("/Timeline")
+            }else if(result.data.message.toUpperCase().includes("ERROR")){
+                return;
+            }
+    })
+    .catch((error) => {
+        return error;
+    });
+    // }, [loggedIn]);
 
 
     return (
