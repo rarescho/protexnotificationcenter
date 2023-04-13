@@ -39,7 +39,7 @@ export default function RegisterProtex() {
             auth_protex,
         },
     };
-    
+    console.log(configuration);
         // make the API call
     axios(configuration)
     .then((result) => {
