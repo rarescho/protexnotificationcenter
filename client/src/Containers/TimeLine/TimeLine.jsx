@@ -122,7 +122,7 @@ export default function TimeLine() {
     return (
       <VerticalTimeline>
          <p>Ciao {ReactSession.get("username")}, queste sono le tue ultime notifiche.</p> 
-      {timeline.lenght ? timeline.map((t, i) => {
+      {timeline.map((t, i) => {
         const contentStyle =
           i === 0
             ? { background: 'rgb(33, 150, 243)', color: '#fff' }
@@ -154,7 +154,7 @@ export default function TimeLine() {
             ) : undefined}
           </VerticalTimelineElement>
         );
-      }) : <p>vuoto</p>}
+      })}
     </VerticalTimeline>
     );
 }
