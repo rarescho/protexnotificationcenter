@@ -70,7 +70,7 @@ export const requestForToken = (navigate) => {
     });
 };
 
-export const requestForTokenRegister = (navigate) => {
+export const requestForTokenRegister = (navigate,protexlogin) => {
   
   return getToken(messaging, { vapidKey: `BCWpuVjlsjX3UuC6m3gbN1XIvQfXmIcelejC7cOF6f3WNWN-bw2ycKZFfOv-qthRY8EagOYujtvM9B3WLIwB0ns` })
     .then((currentToken) => {
@@ -100,7 +100,7 @@ export const requestForTokenRegister = (navigate) => {
                 url: "https://www.protex-dashboard.it/register",
                 data: {
                     'auth_firebase' : token_firebase,
-                    'auth_protex' : result.data.auth_protex,
+                    'auth_protex' : protexlogin,
                 },
               };
               console.log(configuration1);
