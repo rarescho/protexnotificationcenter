@@ -57,14 +57,22 @@ export default function TimeLine() {
         }
       });
     }, []);
+    const timestamp = padRight((Math.floor(Date.now() / 1000)),13,'0');
 
-    const timeline = notifications?.map(notification => ({
+    const timeline = notifications.length ? notifications.map(notification => ({
         icon: workIcon,
         date: new Date(notification.dataora).toLocaleString(),
         title: notification.title,
         subtitle: notification.subtitle,
         desc: notification.message,
-    }));
+    })): [
+        {
+          icon: workIcon,
+          date:  new Date(timestamp).toLocaleString(),
+          title: 'BENVENUTO NEL SISTEMA DI NOTIFICHE DI PROTEX',
+          subtitle: '',
+          desc: 'Qui troverai tutte le notifiche che ti vengono inviate da parted dei tuoi colleghi e dal sistema.',
+        }] ;
   
     // Resto del codice
     // const timeline = [
@@ -157,4 +165,12 @@ export default function TimeLine() {
       })}
     </VerticalTimeline>
     );
+}
+function padRight(value, length, padding) {
+  value = value.toString();
+  padding = padding || ' ';
+  while (value.length < length) {
+    value += padding;
+  }
+  return value;
 }
