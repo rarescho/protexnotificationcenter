@@ -58,7 +58,7 @@ export default function TimeLine() {
       });
     }, []);
 
-    const timeline = notifications.map(notification => ({
+    const timeline = notifications?.map(notification => ({
         icon: workIcon,
         date: new Date(notification.dataora).toLocaleString(),
         title: notification.title,
