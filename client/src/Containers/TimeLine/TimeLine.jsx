@@ -53,7 +53,7 @@ export default function TimeLine() {
           }
       })
       .catch(error => {
-          console.error("Errore durante la procedura di ritrovamento notifiche",error.response.data);
+          console.error("Errore durante la procedura di ritrovamento notifiche",error);
       });
     }, []);
 
