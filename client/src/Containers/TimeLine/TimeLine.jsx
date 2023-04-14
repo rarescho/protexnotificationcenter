@@ -30,14 +30,15 @@ export default function TimeLine() {
 
     const [notifications, setNotifications] = useState([]);
     const [notificationsDisponibili, setNotificationsDisponibili] = useState(false);
-
+    const [utente,setUtente] = useState();
   
     useEffect(() => {
+      setUtente(ReactSession.get("username"));
       const configuration = {
         method: "post",
         url: "https://www.protex-dashboard.it/api/notification/xuser",
         data: {
-          auth_protex: ReactSession.get("username"),          
+          auth_protex: utente,          
         },
       };
 
@@ -78,59 +79,7 @@ export default function TimeLine() {
           desc: 'Qui troverai tutte le notifiche che ti vengono inviate da parted dei tuoi colleghi e dal sistema.',
         }] ;
   
-    // Resto del codice
-    // const timeline = [
-    //   {
-    //     icon: workIcon,
-    //     date: '2011 - present',
-    //     title: 'Creative Director',
-    //     subtitle: 'Miami, FL',
-    //     desc: 'Creative Direction, User Experience, Visual Design, Project Management, Team Leading',
-    //   },
-    //   {
-    //     icon: workIcon,
-    //     date: '2010 - 2011',
-    //     title: 'Art Director',
-    //     subtitle: 'San Francisco, CA',
-    //     desc: 'Creative Direction, User Experience, Visual Design, SEO, Online Marketing',
-    //   },
-    //   {
-    //     icon: workIcon,
-    //     date: '2008 - 2010',
-    //     title: 'Web Designer',
-    //     subtitle: 'Los Angeles, CA',
-    //     desc: 'User Experience, Visual Design',
-    //   },
-    //   {
-    //     icon: workIcon,
-    //     date: '2006 - 2008',
-    //     title: 'Web Designer',
-    //     subtitle: 'San Francisco, CA',
-    //     desc: 'User Experience, Visual Design',
-    //   },
-    //   {
-    //     icon: schoolIcon,
-    //     date: 'April 2013',
-    //     title: 'Content Marketing for Web, Mobile and Social Media',
-    //     subtitle: 'Online Course',
-    //     desc: 'Strategy, Social Media',
-    //   },
-    //   {
-    //     icon: schoolIcon,
-    //     date: 'November 2012',
-    //     title: 'Agile Development Scrum Master',
-    //     subtitle: 'Certification',
-    //     desc: 'Creative Direction, User Experience, Visual Design',
-    //   },
-    //   {
-    //     icon: schoolIcon,
-    //     date: '2002 - 2006',
-    //     title: 'Bachelor of Science in Interactive Digital Media Visual Imaging',
-    //     subtitle: 'Bachelor Degree',
-    //     desc: 'Creative Direction, Visual Design',
-    //   },
-    //   { icon: starIcon },
-    // ];
+    
     return (
       <VerticalTimeline>
          <p>Ciao {ReactSession.get("username")}, queste sono le tue ultime notifiche.</p> 
