@@ -31,9 +31,9 @@ export default function TimeLine() {
     const [notifications, setNotifications] = useState([]);
     const [notificationsDisponibili, setNotificationsDisponibili] = useState(false);
     const [utente,setUtente] = useState("");
-    setUtente(ReactSession.get("username"));
 
     useEffect(() => {
+      setUtente(ReactSession.get("username"));
       const configuration = {
         method: "post",
         url: "https://www.protex-dashboard.it/api/notification/xuser",
@@ -61,7 +61,7 @@ export default function TimeLine() {
           console.error("Errore durante la procedura di ritrovamento notifiche",error);
         }
       });
-    }, []);
+    }, [utente]);
     const timestamp = padRight((Math.floor(Date.now() / 1000)),13,'0');
 
     const timeline = notificationsDisponibili === true ? notifications.map(notification => ({
