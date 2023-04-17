@@ -30,16 +30,16 @@ export default function TimeLine() {
 
     const [notifications, setNotifications] = useState([]);
     const [notificationsDisponibili, setNotificationsDisponibili] = useState(false);
-    const [utente,setUtente] = useState(null);
+    const username = ReactSession.get("username");
+
     
     useEffect(() => {
-      setUtente(ReactSession.get("username"));
-      console.log(utente);
+      console.log(username);
       const configuration = {
         method: "post",
         url: "https://www.protex-dashboard.it/api/notification/xuser",
         data: {
-          auth_protex: utente,          
+          auth_protex: username,          
         },
       };
 
@@ -83,7 +83,7 @@ export default function TimeLine() {
     
     return (
       <VerticalTimeline>
-         <p>Ciao {utente}, queste sono le tue ultime notifiche.</p> 
+         <p>Ciao {username}, queste sono le tue ultime notifiche.</p> 
       {timeline.map((t, i) => {
         const contentStyle =
           i === 0

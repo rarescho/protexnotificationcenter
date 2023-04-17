@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 import './Register.css'
 
+
 export default function Register() {
 
     // initial state
