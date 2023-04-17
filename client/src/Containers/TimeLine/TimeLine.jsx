@@ -62,7 +62,7 @@ export default function TimeLine() {
           console.error("Errore durante la procedura di ritrovamento notifiche",error);
         }
       });
-    }, [username]);
+    }, []);
     const timestamp = padRight((Math.floor(Date.now() / 1000)),13,'0');
 
     const timeline = notificationsDisponibili === true ? notifications.map(notification => ({
