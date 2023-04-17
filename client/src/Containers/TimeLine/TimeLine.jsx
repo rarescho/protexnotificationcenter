@@ -83,7 +83,7 @@ export default function TimeLine() {
     
     return (
       <VerticalTimeline>
-         <p>Ciao {username}, queste sono le tue ultime notifiche.</p> 
+         {/* <p>Ciao {username}, queste sono le tue ultime notifiche.</p>  */}
       {timeline.map((t, i) => {
         const contentStyle =
           i === 0
