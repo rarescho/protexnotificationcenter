@@ -34,11 +34,13 @@ export default function TimeLine() {
     const [count, setCount] = useState(0);
     const [count1, setCount1] = useState(0);
 
-    console.log(count);
-        
+    setCount(count + 1)
+    console.log("Counter 1: ",count);
+
     useEffect(() => {
       console.log(username);
-      console.log(count1);      
+      setCount1(count + 1)
+      console.log("Counter 2: ",count1);      
 
       const configuration = {
         method: "post",
