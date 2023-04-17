@@ -30,15 +30,15 @@ export default function TimeLine() {
 
     const [notifications, setNotifications] = useState([]);
     const [notificationsDisponibili, setNotificationsDisponibili] = useState(false);
-    // const [utente,setUtente] = useState("");
-    // setUtente(ReactSession.get("username"));
+    const [utente,setUtente] = useState("");
+    setUtente(ReactSession.get("username"));
 
     useEffect(() => {
       const configuration = {
         method: "post",
         url: "https://www.protex-dashboard.it/api/notification/xuser",
         data: {
-          auth_protex: ReactSession.get("username"),          
+          auth_protex: utente,          
         },
       };
 
@@ -61,7 +61,7 @@ export default function TimeLine() {
           console.error("Errore durante la procedura di ritrovamento notifiche",error);
         }
       });
-    }, []);
+    }, [utente]);
     const timestamp = padRight((Math.floor(Date.now() / 1000)),13,'0');
 
     const timeline = notificationsDisponibili === true ? notifications.map(notification => ({
@@ -82,7 +82,7 @@ export default function TimeLine() {
     
     return (
       <VerticalTimeline>
-         <p>Ciao {ReactSession.get("username")}, queste sono le tue ultime notifiche.</p> 
+         <p>Ciao {utente}, queste sono le tue ultime notifiche.</p> 
       {timeline.map((t, i) => {
         const contentStyle =
           i === 0
