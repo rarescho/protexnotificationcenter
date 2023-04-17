@@ -31,9 +31,9 @@ export default function TimeLine() {
     const [notifications, setNotifications] = useState([]);
     const [notificationsDisponibili, setNotificationsDisponibili] = useState(false);
     const [utente,setUtente] = useState("");
+    setUtente(ReactSession.get("username"));
 
     useEffect(() => {
-      setUtente(ReactSession.get("username"));
       const configuration = {
         method: "post",
         url: "https://www.protex-dashboard.it/api/notification/xuser",
