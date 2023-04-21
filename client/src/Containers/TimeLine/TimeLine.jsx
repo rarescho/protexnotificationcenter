@@ -8,6 +8,10 @@ import {
   faBriefcase,
   faSchool,
   faStar,
+  faInbox,
+  faTruckFast,
+  faFileInvoiceDollar,
+  faBuildings
 } from '@fortawesome/free-solid-svg-icons';
 import './TimeLine.css'
 
@@ -30,9 +34,13 @@ export default function TimeLine() {
 
     const [notifications, setNotifications] = useState([]);
     const [notificationsDisponibili, setNotificationsDisponibili] = useState(false);
+    const username = ReactSession.get("username");
+    if(username){
+      ReactSession.set("username", username);
+    }
+
 
     useEffect(() => {
-      const username = ReactSession.get("username");
 
       console.log(username);
       const configuration = {
@@ -83,7 +91,7 @@ export default function TimeLine() {
     
     return (
       <VerticalTimeline>
-         {/* <p>Ciao {username}, queste sono le tue ultime notifiche.</p>  */}
+         <p>Ciao {username}, queste sono le tue ultime notifiche.</p> 
       {timeline.map((t, i) => {
         const contentStyle =
           i === 0
