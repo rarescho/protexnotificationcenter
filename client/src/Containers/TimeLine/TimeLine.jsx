@@ -36,10 +36,9 @@ export default function TimeLine() {
     const [notifications, setNotifications] = useState([]);
     const [notificationsDisponibili, setNotificationsDisponibili] = useState(false);
     const username = ReactSession.get("username");
-    console.log("Utente da firebase: ",getUsername());
     useEffect(() => {
+      console.log("Utente da firebase: ",getUsername());
 
-      console.log(username);
       const configuration = {
         method: "post",
         url: "https://www.protex-dashboard.it/api/notification/xuser",
