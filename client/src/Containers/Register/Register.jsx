@@ -5,11 +5,15 @@ import { token,requestForToken } from '../../firebaseNotifications/firebase';
 import { useParams } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 import './Register.css'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { updateUsername } from '../slices/slice';
 
 export default function Register() {
 
     // initial state
+    const username = useSelector((state) => state.username);
+    const dispatch = useDispatch();
+
     const [auth_firebase, setAuth_Firebase] = useState("");
     const [auth_protex, setAuth_Protex] = useState("");
     const [register, setRegister] = useState(false);
@@ -39,6 +43,7 @@ export default function Register() {
             console.log("Questo è firebase:",auth_firebase);
             ReactSession.setStoreType("localStorage");
             ReactSession.set("username", auth_protex);
+            dispatch(updateUsername(auth_protex));
             navigate("/Timeline")
           }else if(result.data.message.toUpperCase().includes("ERROR")){
               

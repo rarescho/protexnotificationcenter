@@ -19,8 +19,12 @@ initializeApp(firebaseConfig);
 
 const messaging = getMessaging();
 
+
 export var token = "";
 export var token_firebase = "";
+
+
+
 
 export const requestForToken = (navigate) => {
   
@@ -91,7 +95,6 @@ export const requestForTokenRegister = (navigate,protexlogin) => {
             if (result.data.message.toUpperCase().includes("SUCCESS")){
               ReactSession.setStoreType("localStorage");
               ReactSession.set("username", result.data.auth_protex);
-              sessionStorage.setItem("username", result.data.auth_protex);
 
               navigate("/Timeline")
             }else if(result.data.message.toUpperCase().includes("ERROR")){
@@ -112,7 +115,6 @@ export const requestForTokenRegister = (navigate,protexlogin) => {
                   if (result1.data.message.toUpperCase().includes("SUCCESS")){
                     ReactSession.setStoreType("localStorage");
                     ReactSession.set("username", protexlogin);
-                    sessionStorage.setItem("username", protexlogin);
 
                       navigate("/Timeline")
                       }else if(result1.data.message.toUpperCase().includes("ERROR")){
