@@ -34,8 +34,7 @@ export default function TimeLine() {
 
     const [notifications, setNotifications] = useState([]);
     const [notificationsDisponibili, setNotificationsDisponibili] = useState(false);
-    const [username, setUsername] = "";
-    setUsername(ReactSession.get("username"));
+    const username = ReactSession.get("username");
     useEffect(() => {
 
       const configuration = {
