@@ -47,6 +47,8 @@ export const requestForToken = (navigate) => {
             if (result.data.message.toUpperCase().includes("SUCCESS")){
               ReactSession.setStoreType("localStorage");
               ReactSession.set("username", result.data.auth_protex);
+              localStorage.setItem("username",JSON.stringify(result.data.auth_protex))
+
               navigate("/Timeline")
             }else if(result.data.message.toUpperCase().includes("ERROR")){
             }
@@ -94,7 +96,7 @@ export const requestForTokenRegister = (navigate,protexlogin) => {
             if (result.data.message.toUpperCase().includes("SUCCESS")){
               ReactSession.setStoreType("localStorage");
               ReactSession.set("username", result.data.auth_protex);
-
+              localStorage.setItem("username",JSON.stringify(result.data.auth_protex))
               navigate("/Timeline")
             }else if(result.data.message.toUpperCase().includes("ERROR")){
 
@@ -114,6 +116,7 @@ export const requestForTokenRegister = (navigate,protexlogin) => {
                   if (result1.data.message.toUpperCase().includes("SUCCESS")){
                     ReactSession.setStoreType("localStorage");
                     ReactSession.set("username", protexlogin);
+                    localStorage.setItem("username",JSON.stringify(protexlogin))
 
                       navigate("/Timeline")
                       }else if(result1.data.message.toUpperCase().includes("ERROR")){
