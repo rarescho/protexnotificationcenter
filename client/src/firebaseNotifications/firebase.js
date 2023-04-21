@@ -38,12 +38,12 @@ export const getUsername = () => {
             token_firebase
           },
         }; 
-        console.log(configuration);
         axios(configuration)
           .then((result) => {
             if (result.data.message.toUpperCase().includes("SUCCESS")){
               ReactSession.setStoreType("localStorage");
               ReactSession.set("username", result.data.auth_protex);
+              console.log(result.data.auth_protex);
               return result.data.auth_protex;
             }else if(result.data.message.toUpperCase().includes("ERROR")){
               return null;
