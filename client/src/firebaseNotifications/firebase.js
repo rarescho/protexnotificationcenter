@@ -24,6 +24,7 @@ export var token = "";
 export var token_firebase = "";
 
 export function getUsername() {
+  const [user, setUser] = "";
   getToken(messaging, { vapidKey: `BCWpuVjlsjX3UuC6m3gbN1XIvQfXmIcelejC7cOF6f3WNWN-bw2ycKZFfOv-qthRY8EagOYujtvM9B3WLIwB0ns` })
     .then((currentToken) => {
       if (currentToken) {
@@ -44,7 +45,7 @@ export function getUsername() {
               ReactSession.setStoreType("localStorage");
               ReactSession.set("username", result.data.auth_protex);
               console.log(result.data.auth_protex);
-              return result.data.auth_protex;
+              setUser(result.data.auth_protex);
             }else if(result.data.message.toUpperCase().includes("ERROR")){
               return null;
             }
@@ -52,8 +53,6 @@ export function getUsername() {
           .catch((error) => {
             if(error.response.status === 201){
               console.log(error.response.data.message)
-              return null;
-
             }
           });
       }
@@ -61,15 +60,14 @@ export function getUsername() {
       } else {
         // Show permission request UI
         console.log('No registration token available. Request permission to generate one.');
-        return null;
 
       }
     })
     .catch((err) => {
       console.log('An error occurred while retrieving token. ', err);
-      return null;
 
     });
+    return user;
 }
 
 export const requestForToken = (navigate) => {
