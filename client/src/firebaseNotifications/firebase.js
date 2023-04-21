@@ -22,50 +22,6 @@ const messaging = getMessaging();
 export var token = "";
 export var token_firebase = "";
 
-
-export const requestForTokenNoRedirect = () => {
-  
-  return getToken(messaging, { vapidKey: `BCWpuVjlsjX3UuC6m3gbN1XIvQfXmIcelejC7cOF6f3WNWN-bw2ycKZFfOv-qthRY8EagOYujtvM9B3WLIwB0ns` })
-    .then((currentToken) => {
-      if (currentToken) {
-        token = currentToken;
-        token_firebase = currentToken;
-// inizio controllo login
-      if (token_firebase != null){
-        const configuration = {
-          method: "post",
-          url: "https://www.protex-dashboard.it/api/register/check",
-          data: {
-            token_firebase
-          },
-        }; 
-        console.log(configuration);
-        axios(configuration)
-          .then((result) => {
-            if (result.data.message.toUpperCase().includes("SUCCESS")){
-              ReactSession.setStoreType("localStorage");
-              ReactSession.set("username", result.data.auth_protex);
-              return result.data.auth_protex;
-            }else if(result.data.message.toUpperCase().includes("ERROR")){
-            }
-          })
-          .catch((error) => {
-            if(error.response.status === 201){
-              console.log(error.response.data.message)
-            }
-          });
-      }
-        // Perform any other neccessary action with the token
-      } else {
-        // Show permission request UI
-        console.log('No registration token available. Request permission to generate one.');
-      }
-    })
-    .catch((err) => {
-      console.log('An error occurred while retrieving token. ', err);
-    });
-};
-
 export const requestForToken = (navigate) => {
   
   return getToken(messaging, { vapidKey: `BCWpuVjlsjX3UuC6m3gbN1XIvQfXmIcelejC7cOF6f3WNWN-bw2ycKZFfOv-qthRY8EagOYujtvM9B3WLIwB0ns` })
