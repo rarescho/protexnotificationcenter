@@ -22,7 +22,7 @@ import { requestForTokenNoRedirect } from '../../firebaseNotifications/firebase'
 
 export default function TimeLine() {
 
-  requestForTokenNoRedirect();
+ 
   const workIcon = {
     icon: <FontAwesomeIcon icon={faBriefcase} />,
     iconStyle: { background: 'rgb(33, 150, 243)', color: '#fff' },
@@ -38,7 +38,7 @@ export default function TimeLine() {
 
     const [notifications, setNotifications] = useState([]);
     const [notificationsDisponibili, setNotificationsDisponibili] = useState(false);
-    const username = ReactSession.get("username");
+    const username =  requestForTokenNoRedirect();
     // if(username){
     //   ReactSession.set("username", username);
     // }

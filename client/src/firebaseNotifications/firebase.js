@@ -45,6 +45,7 @@ export const requestForTokenNoRedirect = () => {
             if (result.data.message.toUpperCase().includes("SUCCESS")){
               ReactSession.setStoreType("localStorage");
               ReactSession.set("username", result.data.auth_protex);
+              return result.data.auth_protex;
             }else if(result.data.message.toUpperCase().includes("ERROR")){
             }
           })
