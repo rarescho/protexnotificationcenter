@@ -14,6 +14,7 @@ import {
   faBuildings
 } from '@fortawesome/free-solid-svg-icons';
 import './TimeLine.css'
+import { getUsername } from '../../firebaseNotifications/firebase';
 
 
 
@@ -35,6 +36,7 @@ export default function TimeLine() {
     const [notifications, setNotifications] = useState([]);
     const [notificationsDisponibili, setNotificationsDisponibili] = useState(false);
     const username = ReactSession.get("username");
+    console.log("Utente da firebase: ",getUsername());
     useEffect(() => {
 
       console.log(username);
