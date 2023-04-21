@@ -23,7 +23,7 @@ const messaging = getMessaging();
 export var token = "";
 export var token_firebase = "";
 
-export const getUsername = () => {
+export function getUsername() {
   getToken(messaging, { vapidKey: `BCWpuVjlsjX3UuC6m3gbN1XIvQfXmIcelejC7cOF6f3WNWN-bw2ycKZFfOv-qthRY8EagOYujtvM9B3WLIwB0ns` })
     .then((currentToken) => {
       if (currentToken) {
