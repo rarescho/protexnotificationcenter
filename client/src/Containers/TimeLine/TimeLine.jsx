@@ -20,7 +20,7 @@ import './TimeLine.css'
 export default function TimeLine() {
   const workIcon = {
     icon: <FontAwesomeIcon icon={faBriefcase} />,
-    iconStyle: { background: 'rgb(33, 150, 243)', color: '#fff' },
+    iconStyle: { background: 'rgb(23, 133, 130)', color: '#BFA181' },
   };
   const inboxIcon = {
     icon: <FontAwesomeIcon icon={faInbox} />,
@@ -103,12 +103,12 @@ export default function TimeLine() {
       {timeline.map((t, i) => {
         const contentStyle =
           i % 2 === 0
-            ? { background: 'rgb(58, 110, 165)', color: '#fff' }
-            : { background: 'rgb(255, 103, 0)', color: '#000000' };
+            ? { background: 'rgb(10, 24, 40)', color: '#BFA181' }
+            : undefined;
         const arrowStyle =
          i % 2 ===  0
-            ? { borderRight: '7px solid  rgb(33, 150, 243)' }
-            : { borderRight: '7px solid  rgb(33, 150, 243)' };
+            ? { borderRight: '7px solid  rgb(23, 133, 130)' }
+            : undefined;
 
         return (
           <VerticalTimelineElement
