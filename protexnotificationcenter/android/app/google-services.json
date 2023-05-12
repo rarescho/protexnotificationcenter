@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "425401308730",
+    "project_id": "protexnotificationcenter",
+    "storage_bucket": "protexnotificationcenter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425401308730:android:9f2e50994e88fed5ddc703",
+        "android_client_info": {
+          "package_name": "com.computerhouse.protexnotificationcenter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425401308730-tgjqaultbld35bavkvh7v0djfiodvtcv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.computerhouse.protexnotificationcenter",
+            "certificate_hash": "32f061793e8d366348fced1be12564f7335fe285"
+          }
+        },
+        {
+          "client_id": "425401308730-22b5ngneubm583tuo2hsc20p2sfginsq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9Xyzn0czXCYFvD76fLqLPZt5IvhIIs2Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425401308730-22b5ngneubm583tuo2hsc20p2sfginsq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
