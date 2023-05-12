@@ -98,7 +98,7 @@ export default function TimeLine() {
   
     
     return (
-      <VerticalTimeline>
+      <VerticalTimeline style={{backgroundColor: "#0A1828"}}>
          <p>Ciao {username}, queste sono le tue ultime notifiche.</p> 
       {timeline.map((t, i) => {
         const contentStyle =
