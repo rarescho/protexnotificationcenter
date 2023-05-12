@@ -1,6 +1,5 @@
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
-
 import com.android.build.OutputFile
 
 /**
@@ -93,9 +92,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.protexnotificationcenter"
+    namespace "com.computerhouse.protexnotificationcenter"
     defaultConfig {
-        applicationId "com.protexnotificationcenter"
+        applicationId "com.computerhouse.protexnotificationcenter"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -113,9 +112,9 @@ android {
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
-            storePassword 'android'
+            storePassword 'rares1'
             keyAlias 'androiddebugkey'
-            keyPassword 'android'
+            keyPassword 'rares1'
         }
     }
     buildTypes {
@@ -151,6 +150,7 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
+    implementation platform('com.google.firebase:firebase-bom:28.2.1')
 
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
 
@@ -166,5 +166,6 @@ dependencies {
         implementation jscFlavor
     }
 }
+apply plugin: 'com.google.gms.google-services'
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

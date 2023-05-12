@@ -23,12 +23,20 @@ export default function TimeLine() {
     icon: <FontAwesomeIcon icon={faBriefcase} />,
     iconStyle: { background: 'rgb(33, 150, 243)', color: '#fff' },
   };
-  const schoolIcon = {
-    icon: <FontAwesomeIcon icon={faSchool} />,
+  const inboxIcon = {
+    icon: <FontAwesomeIcon icon={faInbox} />,
     iconStyle: { background: 'rgb(233, 30, 99)', color: '#fff' },
   };
-  const starIcon = {
-    icon: <FontAwesomeIcon icon={faStar} />,
+  const truchfastIcon = {
+    icon: <FontAwesomeIcon icon={faTruckFast} />,
+    iconStyle: { background: 'rgb(16, 204, 82)', color: '#fff' },
+  };
+  const FileInvoiceDollarIcon = {
+    icon: <FontAwesomeIcon icon={faFileInvoiceDollar} />,
+    iconStyle: { background: 'rgb(16, 204, 82)', color: '#fff' },
+  };
+  const faBuildingsIcon = {
+    icon: <FontAwesomeIcon icon={faBuildings} />,
     iconStyle: { background: 'rgb(16, 204, 82)', color: '#fff' },
   };
 
@@ -80,7 +88,7 @@ export default function TimeLine() {
         title: notification.title,
         subtitle: notification.subtitle,
         desc: notification.message,
-    })): [
+    })).sort((a,b) => a.date - b.date) : [
         {
           icon: workIcon,
           date:  new Date(timestamp).toLocaleString(),
