@@ -102,11 +102,11 @@ export default function TimeLine() {
          <p>Ciao {username}, queste sono le tue ultime notifiche.</p> 
       {timeline.map((t, i) => {
         const contentStyle =
-          i % 4 === 0
+          i % 2 === 0
             ? { background: 'rgb(33, 150, 243)', color: '#fff' }
             : undefined;
         const arrowStyle =
-         i % 4 ===  0
+         i % 2 ===  0
             ? { borderRight: '7px solid  rgb(33, 150, 243)' }
             : undefined;
 
