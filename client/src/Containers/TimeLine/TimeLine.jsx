@@ -10,8 +10,7 @@ import {
   faStar,
   faInbox,
   faTruckFast,
-  faFileInvoiceDollar,
-  faBuildings
+  faFileInvoiceDollar
 } from '@fortawesome/free-solid-svg-icons';
 import './TimeLine.css'
 
@@ -35,10 +34,10 @@ export default function TimeLine() {
     icon: <FontAwesomeIcon icon={faFileInvoiceDollar} />,
     iconStyle: { background: 'rgb(16, 204, 82)', color: '#fff' },
   };
-  const faBuildingsIcon = {
-    icon: <FontAwesomeIcon icon={faBuildings} />,
-    iconStyle: { background: 'rgb(16, 204, 82)', color: '#fff' },
-  };
+  // const faBuildingsIcon = {
+  //   icon: <FontAwesomeIcon icon={faBuildings} />,
+  //   iconStyle: { background: 'rgb(16, 204, 82)', color: '#fff' },
+  // };
 
     const [notifications, setNotifications] = useState([]);
     const [notificationsDisponibili, setNotificationsDisponibili] = useState(false);
@@ -88,7 +87,7 @@ export default function TimeLine() {
         title: notification.title,
         subtitle: notification.subtitle,
         desc: notification.message,
-    })).sort((a,b) => a.date - b.date) : [
+    })).sort((a,b) => a.date< b.date ? 1 : -1) : [
         {
           icon: workIcon,
           date:  new Date(timestamp).toLocaleString(),
@@ -103,18 +102,18 @@ export default function TimeLine() {
          <p>Ciao {username}, queste sono le tue ultime notifiche.</p> 
       {timeline.map((t, i) => {
         const contentStyle =
-          i === 0
+          i % 4 === 0
             ? { background: 'rgb(33, 150, 243)', color: '#fff' }
             : undefined;
         const arrowStyle =
-          i === 0
+         i % 4 ===  0
             ? { borderRight: '7px solid  rgb(33, 150, 243)' }
             : undefined;
 
         return (
           <VerticalTimelineElement
             key={i}
-            className="vertical-timeline-element--work"
+            className="vertical-timeline-element--work"           
             contentStyle={contentStyle}
             contentArrowStyle={arrowStyle}
             date={t.date}
