@@ -103,12 +103,12 @@ export default function TimeLine() {
       {timeline.map((t, i) => {
         const contentStyle =
           i % 2 === 0
-            ? { background: 'rgb(33, 150, 243)', color: '#fff' }
-            : undefined;
+            ? { background: 'rgb(58, 110, 165)', color: '#fff' }
+            : { background: 'rgb(255, 103, 0)', color: '#000000' };
         const arrowStyle =
          i % 2 ===  0
             ? { borderRight: '7px solid  rgb(33, 150, 243)' }
-            : undefined;
+            : { borderRight: '7px solid  rgb(33, 150, 243)' };
 
         return (
           <VerticalTimelineElement
