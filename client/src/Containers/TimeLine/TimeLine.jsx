@@ -99,6 +99,7 @@ export default function TimeLine() {
     
     return (
       <div className="timeline_grafica">
+        <img src={require('../..assets/protex.png')} />
         <VerticalTimeline>
           <p>Ciao {username}, queste sono le tue ultime notifiche.</p> 
         {timeline.map((t, i) => {
