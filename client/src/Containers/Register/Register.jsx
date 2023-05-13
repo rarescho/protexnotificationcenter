@@ -50,9 +50,13 @@ export default function Register() {
         });
       
     };
-      return  (
+      return  (       
         <div className="Auth-form-container">
+        
         <form className="Auth-form">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+            <img style={{ width: "80%", alignSelf: "center"}}  src={require('../../assets/protex.png')}/>            
+        </div>
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Registrati</h3>
             <div className="form-group mt-3">

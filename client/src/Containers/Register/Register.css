@@ -3,7 +3,7 @@
     text-align: center;
 }
 .Auth-form-container {
-    background-image: url('../../assets/bg.jpg');
+    background-image: url('../../assets/bg-mobile.jpg');
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -11,12 +11,13 @@
   }
   
   .Auth-form-container {
-    display: flex;
-    justify-content: center;
+    display:flex;
+    justify-content:center;
     align-items: center;
     width: 100vw;
     height: 100vh;
   }
+
   
   .Auth-form {
     width: 420px;

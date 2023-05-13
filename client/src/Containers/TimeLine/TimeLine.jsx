@@ -120,12 +120,12 @@ export default function TimeLine() {
 
           const contentStyle =
             i % 2 === 0
-              ? { background: 'rgb(255, 229, 219)', color: '#005C6A' }
-              : { background: 'rgb(184, 130, 121)', color: '#005C6A' };
+              ? { background: 'rgb(126, 182, 204)', color: '#EDEAEB' }
+              : { background: 'rgb(230, 244, 241)', color: '#EDEAEB' };
           const arrowStyle =
           i % 2 ===  0
-              ? { borderRight: '7px solid  rgb(255, 229, 219)' }
-              : { borderRight: '7px solid  rgb(162, 98, 87)' };
+              ? { borderRight: '7px solid  rgb(126, 182, 204)' }
+              : { borderRight: '7px solid  rgb(230, 244, 241)' };
 
           return (
             <VerticalTimelineElement
