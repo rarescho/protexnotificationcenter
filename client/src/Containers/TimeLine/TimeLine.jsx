@@ -92,14 +92,14 @@ export default function TimeLine() {
     const timestamp = padRight((Math.floor(Date.now() / 1000)),13,'0');
 
     const timeline = notificationsDisponibili === true ? notifications.map(notification => ({
-        icon: workIcon,
+        icon: truchfastIcon,
         date: new Date(notification.dataora).toLocaleString(),
         title: notification.title,
         subtitle: notification.subtitle,
         desc: notification.message,
     })).sort((a,b) => a.date< b.date ? 1 : -1) : [
         {
-          icon: workIcon,
+          icon: truchfastIcon,
           date:  new Date(timestamp).toLocaleString(),
           title: 'BENVENUTO NEL SISTEMA DI NOTIFICHE DI PROTEX',
           subtitle: '',
