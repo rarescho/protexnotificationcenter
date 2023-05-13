@@ -38,7 +38,7 @@ export default function TimeLine() {
   };
   const truchfastIcon = {
     icon: <FontAwesomeIcon icon={faTruckFast} />,
-    iconStyle: { background: 'rgb(16, 204, 82)', color: '#fff' },
+    iconStyle: { background: 'rgb(126, 182, 204)', color: '#fff' },
   };
   const FileInvoiceDollarIcon = {
     icon: <FontAwesomeIcon icon={faFileInvoiceDollar} />,
@@ -120,8 +120,8 @@ export default function TimeLine() {
 
           const contentStyle =
             i % 2 === 0
-              ? { background: 'rgb(126, 182, 204)', color: '#EDEAEB' }
-              : { background: 'rgb(230, 244, 241)', color: '#EDEAEB' };
+              ? { background: 'rgb(126, 182, 204)', color: '#000000' }
+              : { background: 'rgb(230, 244, 241)', color: '#000000' };
           const arrowStyle =
           i % 2 ===  0
               ? { borderRight: '7px solid  rgb(126, 182, 204)' }
