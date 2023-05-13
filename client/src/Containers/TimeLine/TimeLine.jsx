@@ -13,14 +13,24 @@ import {
   faFileInvoiceDollar
 } from '@fortawesome/free-solid-svg-icons';
 import './TimeLine.css'
+import WebFont from 'webfontloader';
+
+
 
 
 
 
 export default function TimeLine() {
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['Droid Sans', 'Chilanka', 'Lato','Kanit']
+      }
+    });
+   }, []);
   const workIcon = {
     icon: <FontAwesomeIcon icon={faBriefcase} />,
-    iconStyle: { background: 'rgb(23, 133, 130)', color: '#BFA181' },
+    iconStyle: { background: 'rgb(0, 92, 106)', color: '#ffffff' },
   };
   const inboxIcon = {
     icon: <FontAwesomeIcon icon={faInbox} />,
@@ -99,25 +109,30 @@ export default function TimeLine() {
     
     return (
       <div className="timeline_grafica">
-        <img src={require('../..assets/protex.png')} />
-        <VerticalTimeline>
-          <p>Ciao {username}, queste sono le tue ultime notifiche.</p> 
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+            <img style={{ width: "23%", alignSelf: "center"}}  src={require('../../assets/protex.png')}/>            
+        </div>
+        <div className="font-loader" style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+          <p> CIAO {username}, QUESTE SONO LE TUE ULTIME NOTIFICHE.</p>
+        </div> 
+        <VerticalTimeline >
         {timeline.map((t, i) => {
+
           const contentStyle =
             i % 2 === 0
-              ? { background: 'rgb(10, 24, 40)', color: '#BFA181' }
-              : undefined;
+              ? { background: 'rgb(255, 229, 219)', color: '#005C6A' }
+              : { background: 'rgb(184, 130, 121)', color: '#005C6A' };
           const arrowStyle =
           i % 2 ===  0
-              ? { borderRight: '7px solid  rgb(23, 133, 130)' }
-              : undefined;
+              ? { borderRight: '7px solid  rgb(255, 229, 219)' }
+              : { borderRight: '7px solid  rgb(162, 98, 87)' };
 
           return (
             <VerticalTimelineElement
               key={i}
               className="vertical-timeline-element--work"           
               contentStyle={contentStyle}
-              contentArrowStyle={arrowStyle}
+              contentArrowStyle={arrowStyle}           
               date={t.date}
               {...t.icon}
             >

@@ -3,12 +3,11 @@
     background-color: #333;
   }
 .timeline_grafica{
-  background: rgb(255,131,111);
-background: -moz-linear-gradient(116deg, rgba(255,131,111,1) 12%, rgba(241,177,177,1) 100%, rgba(255,255,255,1) 100%);
-background: -webkit-linear-gradient(116deg, rgba(255,131,111,1) 12%, rgba(241,177,177,1) 100%, rgba(255,255,255,1) 100%);
-background: linear-gradient(116deg, rgba(255,131,111,1) 12%, rgba(241,177,177,1) 100%, rgba(255,255,255,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff836f",endColorstr="#ffffff",GradientType=1);
-
+  background: rgb(249,194,186);
+background: -moz-linear-gradient(116deg, rgba(249,194,186,1) 0%, rgba(250,196,196,0.3337710084033614) 100%, rgba(255,255,255,1) 100%);
+background: -webkit-linear-gradient(116deg, rgba(249,194,186,1) 0%, rgba(250,196,196,0.3337710084033614) 100%, rgba(255,255,255,1) 100%);
+background: linear-gradient(116deg, rgba(249,194,186,1) 0%, rgba(250,196,196,0.3337710084033614) 100%, rgba(255,255,255,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f9c2ba",endColorstr="#ffffff",GradientType=1);
 }
 
 .font-loader {
