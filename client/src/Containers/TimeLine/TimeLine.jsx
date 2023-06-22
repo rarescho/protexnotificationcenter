@@ -62,7 +62,8 @@ export default function TimeLine() {
     useEffect(() => {
 
       const configuration = {
-        method: "post",
+        method: 'POST',
+        maxBodyLength: Infinity,
         url: "https://www.protex-dashboard.it/api/notification/xuser",
         data: {
           auth_protex: username,          
